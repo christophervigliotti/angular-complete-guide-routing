@@ -5,9 +5,9 @@ This is one of several repos that I created for the course "Angular - The Comple
 ## Chapters
 
 ```
-124. Module Introduction
+124. Module Introduction ✅
 
-125. Why do we need a Router?
+125. Why do we need a Router? ✅
 
 126. Understanding the Example Project
 
@@ -77,7 +77,7 @@ This is one of several repos that I created for the course "Angular - The Comple
 
 ### Solution!  
 
-With help from https://github.com/spiraldev/ 
+With help from https://github.com/spiraldev/ and https://gist.github.com/ted-piotrowski/33d7a23ce9f67231620d8edd825bf89e 
 
 ```
 # uninstall the things
