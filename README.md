@@ -74,3 +74,27 @@ This is one of several repos that I created for the course "Angular - The Comple
 
 * posted over at https://www.udemy.com/course/the-complete-guide-to-angular-2/learn/lecture/6656272#questions/17278720 
 * details at https://gist.github.com/christophervigliotti/7827912e379376fe3fbbe81e190333c0 
+
+### Solution Attempt 
+
+```
+# uninstall the things
+sudo apt-get remove nodejs
+sudo apt-get remove npm
+sudo rm /etc/apt/sources.list.d/*
+
+# install nvm
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
+
+# close and reopen terminal now or...
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# verify installation
+command -v nvm
+
+# next step...
+https://dev.to/ms314006/how-to-install-npm-through-nvm-node-version-manager-5gif
+
+```
