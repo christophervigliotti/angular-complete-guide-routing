@@ -9,9 +9,53 @@ This is one of several repos that I created for the course "Angular - The Comple
 
 125. Why do we need a Router? ✅
 
-126. Understanding the Example Project
+126. Understanding the Example Project ✅
 
-127. Setting up and Loading Routes
+In our app, we got three sections:
+
+    1. Home
+    2. Servers
+        2.a View and Edit Servers
+        2.b A Service is used to load and update Servers
+    3. Users
+        3.a View Users
+
+This app will be improved by adding routing but definitely feel free to play around with it - besides routing, everything should be working fine.
+
+127. Setting up and Loading Routes ✅
+
+// 127 defining our routes in app.module.ts (they also need to be registered to the imports array)
+    const appRoutes: Routes = [
+    // aka localhost:4200
+    { 
+        path: '',
+        component: HomeComponent 
+    },
+    // aka localhost:4200/users
+    { 
+        path: 'users',
+        component: UsersComponent 
+    },
+    // aka localhost:4200/users
+    { 
+        path: 'servers',
+        component: ServersComponent 
+    }
+    ];
+// ...also...
+  imports: [
+    BrowserModule,
+    FormsModule,
+    RouterModule.forRoot(appRoutes) // 127
+  ],
+
+<!-- 127 in app.component.html...added the router-outlet (the area that will load the page/component associated with the route)-->
+  <div class="row">
+    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+
 
 128. Navigating with Router Links
 
