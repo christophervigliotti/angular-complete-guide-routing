@@ -5,11 +5,11 @@ This is one of several repos that I created for the course "Angular - The Comple
 ## Chapters
 
 ```
-124. Module Introduction ✅
+✅ 124. Module Introduction 
 
-125. Why do we need a Router? ✅
+✅ 125. Why do we need a Router? 
 
-126. Understanding the Example Project ✅
+✅ 126. Understanding the Example Project 
 
 In our app, we got three sections:
 
@@ -22,9 +22,10 @@ In our app, we got three sections:
 
 This app will be improved by adding routing but definitely feel free to play around with it - besides routing, everything should be working fine.
 
-127. Setting up and Loading Routes ✅
+✅ 127. Setting up and Loading Routes 
 
 // 127 defining our routes in app.module.ts (they also need to be registered to the imports array)
+
     const appRoutes: Routes = [
     // aka localhost:4200
     { 
@@ -42,7 +43,9 @@ This app will be improved by adding routing but definitely feel free to play aro
         component: ServersComponent 
     }
     ];
+
 // ...also...
+
   imports: [
     BrowserModule,
     FormsModule,
@@ -50,16 +53,49 @@ This app will be improved by adding routing but definitely feel free to play aro
   ],
 
 <!-- 127 in app.component.html...added the router-outlet (the area that will load the page/component associated with the route)-->
+
   <div class="row">
     <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
       <router-outlet></router-outlet>
     </div>
   </div>
 
+<!-- 
+bad bootstrap css was bugging me 
+https://getbootstrap.com/docs/4.0/components/navs/#tabs
+-->
+    <ul class="nav nav-tabs">
+    <li role="presentation" class="nav-item">
+        <a href="#" class="nav-link active">Home</a></li>
+    <li role="presentation" class="nav-item">
+        <a href="#" class="nav-link">Servers</a></li>
+    <li role="presentation" class="nav-item">
+        <a href="#" class="nav-link">Users</a></li>
+    </ul>
 
-128. Navigating with Router Links
+✅ 128. Navigating with Router Links
 
-129. Understanding Navigation Paths
+<!--
+128 router links
+-->
+    <ul class="nav nav-tabs">
+    <li role="presentation" class="nav-item">
+        <a 
+        routerLink="/" 
+        class="nav-link active">Home</a></li>
+    <li role="presentation" class="nav-item">
+        <a 
+        routerLink="/servers" 
+        class="nav-link">Servers</a></li>
+    <li role="presentation" class="nav-item">
+
+        <!-- 128 router link, property binding with non-string elements -->
+        <a 
+        [routerLink]="['/users']" 
+        class="nav-link">Users</a></li>
+    </ul>
+
+🔜 129. Understanding Navigation Paths
 
 130. Styling Active Router Links
 
