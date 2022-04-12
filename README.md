@@ -70,12 +70,14 @@ This is one of several repos that I created for the course "Angular - The Comple
 
 # Additional Yammering
 
-## Error When Running `npm -i`
+## Error When Running `npm i`
 
 * posted over at https://www.udemy.com/course/the-complete-guide-to-angular-2/learn/lecture/6656272#questions/17278720 
 * details at https://gist.github.com/christophervigliotti/7827912e379376fe3fbbe81e190333c0 
 
-### Solution Attempt 
+### Solution!  
+
+With help from https://github.com/spiraldev/ 
 
 ```
 # uninstall the things
@@ -94,7 +96,30 @@ export NVM_DIR="$HOME/.nvm"
 # verify installation
 command -v nvm
 
-# next step...
-https://dev.to/ms314006/how-to-install-npm-through-nvm-node-version-manager-5gif
+# made a VM snapshot at this point
 
+# next steps...
+# https://dev.to/ms314006/how-to-install-npm-through-nvm-node-version-manager-5gif
+# nvm use system ... no system version defined
+
+nvm ls-remote
+# revealed latest LTS: v16.14.2   (Latest LTS: Gallium)
+
+nvm install v16.14.2
+
+# check the version of nvm currently in use 
+nvm current
+
+# let's install this stuff...
+ng i
+# getting this...
+# npm WARN old lockfile 
+# npm WARN old lockfile The package-lock.json file was created with an old version of npm,
+# npm WARN old lockfile so supplemental metadata must be fetched from the registry.
+# npm WARN old lockfile 
+# npm WARN old lockfile This is a one-time fix-up, please be patient...
+# npm WARN old lockfile 
+
+ng s
+# we are gtg!
 ```
