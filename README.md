@@ -136,7 +136,26 @@ posted my q over at: https://stackoverflow.com/questions/71859165/how-to-apply-a
     </li>
     </ul>
 
-🔜 131. Navigating Programmatically
+✅ 131. Navigating Programmatically
+
+// home.component.ts
+    export class HomeComponent implements OnInit {
+
+    constructor(
+        // 131 added this arg so that we can use it in method onLoadServers()
+        private router: Router
+    ) { }
+
+    ngOnInit() {
+    }
+
+    // 131 added method + router.navigate()
+    onLoadServers(){
+        this.router.navigate(['/servers']); 
+    }
+
+    }
+
 
 🔜 132. Using Relative Paths in Programmatic Navigation
 
