@@ -95,13 +95,22 @@ https://getbootstrap.com/docs/4.0/components/navs/#tabs
         class="nav-link">Users</a></li>
     </ul>
 
-🔜 129. Understanding Navigation Paths
+✅ 129. Understanding Navigation Paths
+
+<!-- 
+    129 added link to servers.component.html...
+    routerLink attribute does not have the leading slash (produces an error because there is no route "/servers/servers" )...
+    <a routerLink="servers">Reload Page</a>
+    
+    ...adding the slash fixes the problem...
+-->
+    <a routerLink="/servers">Reload Page</a>
 
 130. Styling Active Router Links
 
 131. Navigating Programmatically
 
-132. Using Relative Paths in Programmatic Navigation
+🔜 132. Using Relative Paths in Programmatic Navigation
 
 133. Passing Parameters to Routes
 
