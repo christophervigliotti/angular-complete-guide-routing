@@ -106,9 +106,37 @@ https://getbootstrap.com/docs/4.0/components/navs/#tabs
 -->
     <a routerLink="/servers">Reload Page</a>
 
-130. Styling Active Router Links
+✅ 130. Styling Active Router Links
 
-131. Navigating Programmatically
+<!-- 
+130 added routerLinkActive and (to home page) routerLinkActiveOptions
+
+question: how can I make this conditional...meaning...still apply the 'nav-link'
+posted my q over at: https://stackoverflow.com/questions/71859165/how-to-apply-a-css-class-to-a-link-when-its-route-is-not-active
+-->
+    <ul class="nav nav-tabs">
+    <li role="presentation" class="nav-item">
+        <a 
+        [routerLinkActive]="['nav-link','active']" 
+        [routerLinkActiveOptions]="{exact: true}"
+        routerLink="/" 
+        >Home</a>
+    </li>
+    <li role="presentation" class="nav-item">
+        <a 
+        routerLink="/servers" 
+        [routerLinkActive]="['nav-link','active']" 
+        >Servers</a>
+    </li>
+    <li role="presentation" class="nav-item">
+        <a 
+        [routerLink]="['/users']" 
+        [routerLinkActive]="['nav-link','active']" 
+        >Users</a>
+    </li>
+    </ul>
+
+🔜 131. Navigating Programmatically
 
 🔜 132. Using Relative Paths in Programmatic Navigation
 
@@ -157,7 +185,7 @@ https://getbootstrap.com/docs/4.0/components/navs/#tabs
 154. Wrap Up
 ```
 
-# Additional Yammering
+# More Info
 
 ## Error When Running `npm i`
 

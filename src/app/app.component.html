@@ -6,24 +6,33 @@
       bad bootstrap css was bugging me 
       https://getbootstrap.com/docs/4.0/components/navs/#tabs
       -->
-      <!--
-      128 router links
+      <!-- 128 router links -->
+      <!-- 
+      130 added routerLinkActive and (to home page) routerLinkActiveOptions
+
+      question: how can I make this conditional...meaning...still apply the 'nav-link'
+      posted my q over at: https://stackoverflow.com/questions/71859165/how-to-apply-a-css-class-to-a-link-when-its-route-is-not-active
       -->
       <ul class="nav nav-tabs">
         <li role="presentation" class="nav-item">
           <a 
+            [routerLinkActive]="['nav-link','active']" 
+            [routerLinkActiveOptions]="{exact: true}"
             routerLink="/" 
-            class="nav-link active">Home</a></li>
+          >Home</a>
+        </li>
         <li role="presentation" class="nav-item">
           <a 
             routerLink="/servers" 
-            class="nav-link">Servers</a></li>
+            [routerLinkActive]="['nav-link','active']" 
+          >Servers</a>
+        </li>
         <li role="presentation" class="nav-item">
-
-          <!-- 128 router link, property binding with non-string elements -->
           <a 
             [routerLink]="['/users']" 
-            class="nav-link">Users</a></li>
+            [routerLinkActive]="['nav-link','active']" 
+          >Users</a>
+        </li>
       </ul>
 
     </div>
