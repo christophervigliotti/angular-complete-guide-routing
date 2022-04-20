@@ -20,6 +20,12 @@
       <a routerLink="/servers">Reload Page</a>
     -->
 
+    <!-- 131 added a new button with a click listener that fires method onReload()-->
+    <button 
+      class="btn btn-primary" 
+      (click)="onReload()"
+    >Reload Page</button>
+
     <app-edit-server></app-edit-server>
     <hr>
     <app-server></app-server>

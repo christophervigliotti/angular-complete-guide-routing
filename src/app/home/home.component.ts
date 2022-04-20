@@ -9,16 +9,16 @@ import { Router } from '@angular/router';
 export class HomeComponent implements OnInit {
 
   constructor(
-    private router: Router// 131 added
+    private router: Router// 131 added this arg so that we can use it in method onLoadServers()
   ) { }
 
   ngOnInit() {
   }
 
-  // 131 added
+  // 131 added router.navigate()
   onLoadServers(){
     // important business logic goes here
-    this.router.navigate(['servers']);
+    this.router.navigate(['/servers']); 
   }
 
 }

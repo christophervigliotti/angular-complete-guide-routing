@@ -157,9 +157,32 @@ posted my q over at: https://stackoverflow.com/questions/71859165/how-to-apply-a
     }
 
 
-🔜 132. Using Relative Paths in Programmatic Navigation
+132. Using Relative Paths in Programmatic Navigation
 
-133. Passing Parameters to Routes
+    <!-- 131 servers.component.html, added a new button with a click listener that fires method onReload()-->
+    <button 
+      class="btn btn-primary" 
+      (click)="onReload()"
+    >Reload Page</button>
+
+  /* 
+  131 servers.component.ts, added arguments (and object properties) router and route (for use in function onReload()).
+  * Argument "router" is of type @angular/router/Router and gives us access to the navigate() method.
+  * Argument "route" is of type @angular/router/ActivatedRoute and gives a means to pass in a relative path to the 2nd arg of our call to this.router.navigate().
+  
+  */
+  constructor(
+    private serversService: ServersService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) { }
+
+  // 131 servers.component.ts, added method that is called by click listener
+  onReload(){
+    // this.router.navigate(['/servers'],{relativeTo: this.route});
+  }
+
+🔜 133. Passing Parameters to Routes
 
 134. Fetching Route Parameters
 
