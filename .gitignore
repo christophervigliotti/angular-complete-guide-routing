@@ -38,7 +38,7 @@ testem.log
 .DS_Store
 Thumbs.db
 
-# yup
+# vigliotti says relax!
 .angular/
 *.pack
 *.old
