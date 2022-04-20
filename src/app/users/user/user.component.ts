@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-user',
@@ -8,9 +9,18 @@ import { Component, OnInit } from '@angular/core';
 export class UserComponent implements OnInit {
   user: {id: number, name: string};
 
-  constructor() { }
+  // 134 user.component.ts, injected the activated route here in order to access path data (specifically in this case the user id)
+  constructor(
+    private route: ActivatedRoute 
+  ) { }
 
+  // 134 user.component.ts, using route to get the param value for ID
   ngOnInit() {
+    console.log('user.component ngOnInit > "id" is "' + this.route.snapshot.params['id'] + '"');
+    this.user = {
+      id: this.route.snapshot.params['id'],
+      name: this.route.snapshot.params['name']
+    }
   }
 
 }

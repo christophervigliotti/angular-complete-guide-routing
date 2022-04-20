@@ -25,6 +25,11 @@ const appRoutes: Routes = [
     path: 'users',
     component: UsersComponent 
   },
+  // 133 app.module.ts added this route with a dynamic placeholders named "id" and "name"
+  { 
+    path: 'users/:id/:name',
+    component: UsersComponent 
+  },
   // aka localhost:4200/users
   { 
     path: 'servers',

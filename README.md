@@ -182,11 +182,37 @@ posted my q over at: https://stackoverflow.com/questions/71859165/how-to-apply-a
     // this.router.navigate(['/servers'],{relativeTo: this.route});
   }
 
-🔜 133. Passing Parameters to Routes
+✅ 133. Passing Parameters to Routes
 
-134. Fetching Route Parameters
+  // 133 app.module.ts added this route with a dynamic placeholder named "id"
+  { 
+    path: 'users/:id',
+    component: UsersComponent 
+  },
 
-135. Fetching Route Parameters Reactively
+✅ 134. Fetching Route Parameters
+
+    // 134 user.component.ts, injected the activated route here in order to access path data (specifically in this case the user id)
+    constructor(
+        private route: ActivatedRoute 
+    ) { }
+
+    // 134 user.component.ts, using route to get the param value for ID
+    ngOnInit() {
+        console.log('user.component ngOnInit > "id" is "' + this.route.snapshot.params['id'] + '"');
+        this.user = {
+        id: this.route.snapshot.params['id'],
+        name: this.route.snapshot.params['name']
+        }
+    }
+
+    <!-- 134 user.component.html, added variable output via {{string interpolation}} -->
+    <p>User with ID {{user.id}} loaded.</p>
+    <p>User name is {{user.name}}.</p>    
+
+    Outcome: http://localhost:4200/users/1/Vig displays the id of "1" and the user name of "Vig" as expected.
+
+🔜 135. Fetching Route Parameters Reactively
 
 136. An Important Note about Route Observables
 
