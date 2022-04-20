@@ -159,7 +159,7 @@ posted my q over at: https://stackoverflow.com/questions/71859165/how-to-apply-a
 
 132. Using Relative Paths in Programmatic Navigation
 
-    <!-- 131 servers.component.html, added a new button with a click listener that fires method onReload()-->
+    <!-- 132 servers.component.html, added a new button with a click listener that fires method onReload()-->
     <button 
       class="btn btn-primary" 
       (click)="onReload()"
@@ -177,7 +177,7 @@ posted my q over at: https://stackoverflow.com/questions/71859165/how-to-apply-a
     private route: ActivatedRoute
   ) { }
 
-  // 131 servers.component.ts, added method that is called by click listener
+  // 132 servers.component.ts, added method that is called by click listener
   onReload(){
     // this.router.navigate(['/servers'],{relativeTo: this.route});
   }

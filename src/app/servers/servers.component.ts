@@ -10,7 +10,7 @@ import { ServersService } from './servers.service';
 export class ServersComponent implements OnInit {
   public servers: {id: number, name: string, status: string}[] = [];
 
-  // 131 added arguments (and object properties) router and route (for use in function onReload())
+  // 132 added arguments (and object properties) router and route (for use in function onReload())
   constructor(
     private serversService: ServersService,
     private router: Router,
@@ -21,7 +21,7 @@ export class ServersComponent implements OnInit {
     this.servers = this.serversService.getServers();
   }
 
-  // 131 added method that is called by click listener
+  // 132 added method that is called by click listener
   onReload(){
     // this.router.navigate(['/servers'],{relativeTo: this.route});
   }
