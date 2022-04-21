@@ -258,7 +258,7 @@ Outcome: http://localhost:4200/users/1/Vig displays the id of "1" and the user n
         this.paramsSubscription.unsubscribe();
     }
 
-🔜 137. Passing Query Parameters and Fragments
+✅ 137. Passing Query Parameters and Fragments
 
 // 137 route added app.module.ts
     {
@@ -301,7 +301,19 @@ onLoadServer(id: number){
     ); 
 }
 
-🔜 138. Retrieving Query Parameters and Fragments
+✅ 138. Retrieving Query Parameters and Fragments
+
+// edit-server.component.ts...
+    constructor(
+        private serversService: ServersService,
+        // 138 injecting the ActivatedRoute (for use in ngOnInit)
+        private route: ActivatedRoute
+    ) { }
+
+  ngOnInit() {
+    this.route.queryParams.subscribe();
+    this.route.fragment.subscribe();
+    ...
 
 🔜 139. Practicing and some Common Gotchas
 
