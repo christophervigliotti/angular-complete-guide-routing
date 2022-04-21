@@ -260,6 +260,47 @@ Outcome: http://localhost:4200/users/1/Vig displays the id of "1" and the user n
 
 🔜 137. Passing Query Parameters and Fragments
 
+// 137 route added app.module.ts
+    {
+        path: 'servers/:id/edit',
+        component: EditServerComponent
+    }
+
+<!-- 
+137, servers.component.html, added 
+* routerLink 
+* queryParams 
+* fragment 
+-->
+    <a
+    [routerLink]="['/servers',5,'edit']"
+    [queryParams]="{allowEdit:'1'}"
+    [fragment]="'loading'"
+    href="#"
+    class="list-group-item"
+    *ngFor="let server of servers">
+    {{ server.name }}
+    </a>
+
+<!-- 137, home.component.html, changed click event from onLoadServers() to onLoadServer(1) -->
+    <button 
+        class="btn btn-primary" 
+        (click)="onLoadServer(1)"
+    >Load Servers</button>
+
+// 137, home.component.ts, added method onLoadServer
+onLoadServer(id: number){
+    // navigate() function call...
+    this.router.navigate(
+        // passing in the id...
+        ['/servers',id,'edit'],
+        // passing in query param 'allowEdit' with a value of '1'...
+        {queryParams: {allowEdit: '1'}, 
+        // passing in the fragment '#loading'...
+        fragment: 'loading'}
+    ); 
+}
+
 🔜 138. Retrieving Query Parameters and Fragments
 
 🔜 139. Practicing and some Common Gotchas

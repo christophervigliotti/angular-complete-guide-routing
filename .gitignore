@@ -40,5 +40,6 @@ Thumbs.db
 
 # vigliotti says relax!
 .angular/
+.vscode/
 *.pack
 *.old
