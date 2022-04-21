@@ -246,7 +246,7 @@ Outcome: http://localhost:4200/users/1/Vig displays the id of "1" and the user n
         );
     }
 
-136. An Important Note about Route Observables
+✅ 136. An Important Note about Route Observables
 
 // user.component.ts...
     paramsSubscription: Subscription; // 136 added subscription as a property...
