@@ -212,45 +212,76 @@ posted my q over at: https://stackoverflow.com/questions/71859165/how-to-apply-a
 
     Outcome: http://localhost:4200/users/1/Vig displays the id of "1" and the user name of "Vig" as expected.
 
-🔜 135. Fetching Route Parameters Reactively
+✅ 135. Fetching Route Parameters Reactively
+
+    <!-- 135 user.component.html, a router link to user 10 (Anna) -->
+    <a
+        [routerLink]="['/users',10,'Anna']"
+    >
+        Load Anna
+    </a>
+
+    // 135, user.component.ts... 
+    ngOnInit() {
+        console.log('user.component ngOnInit > "id" is "' + this.route.snapshot.params['id'] + '"');
+        this.user = {
+        id: this.route.snapshot.params['id'],
+        name: this.route.snapshot.params['name']
+        }
+        // 135, user.component.ts, added the params 'observable' 
+        // an observable is a feature added by a 3rd party package that allow you to work with async tasks
+        this.route.params.subscribe(
+        // the subscribe method here takes three args...
+        // arg.1. - a function that will be fired when new data is sent through the observable
+        (params: Params) => {
+            // this will update the user property when the params change
+            this.user.id = params['id'];
+            this.user.name = params['name'];
+        }
+        // arg.2. - tbd
+        // arg.3. - tbd
+        );
+    }
 
 136. An Important Note about Route Observables
 
-137. Passing Query Parameters and Fragments
 
-138. Retrieving Query Parameters and Fragments
 
-139. Practicing and some Common Gotchas
+🔜 137. Passing Query Parameters and Fragments
 
-140. Setting up Child (Nested) Routes
+🔜 138. Retrieving Query Parameters and Fragments
 
-141. Using Query Parameters - Practice
+🔜 139. Practicing and some Common Gotchas
 
-142. Configuring the Handling of Query Parameters
+🔜 140. Setting up Child (Nested) Routes
 
-143. Redirecting and Wildcard Routes
+🔜 141. Using Query Parameters - Practice
 
-144. Important: Redirection Path Matching
+🔜 142. Configuring the Handling of Query Parameters
 
-145. Outsourcing the Route Configuration
+🔜 143. Redirecting and Wildcard Routes
 
-146. An Introduction to Guards
+🔜 144. Important: Redirection Path Matching
 
-147. Protecting Routes with canActivate
+🔜 145. Outsourcing the Route Configuration
 
-148. Protecting Child (Nested) Routes with canActivateChild
+🔜 146. An Introduction to Guards
 
-149. Using a Fake Auth Service
+🔜 147. Protecting Routes with canActivate
 
-150. Controlling Navigation with canDeactivate
+🔜 148. Protecting Child (Nested) Routes with canActivateChild
 
-151. Passing Static Data to a Route
+🔜 149. Using a Fake Auth Service
 
-152. Resolving Dynamic Data with the resolve Guard
+🔜 150. Controlling Navigation with canDeactivate
 
-153. Understanding Location Strategies
+🔜 151. Passing Static Data to a Route
 
-154. Wrap Up
+🔜 152. Resolving Dynamic Data with the resolve Guard
+
+🔜 153. Understanding Location Strategies
+
+🔜 154. Wrap Up
 ```
 
 # More Info
