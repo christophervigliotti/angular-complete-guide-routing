@@ -1,13 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
   styleUrls: ['./user.component.css']
 })
-export class UserComponent implements OnInit {
-  user: {id: number, name: string};
+export class UserComponent implements OnInit, OnDestroy {
+
+  // properties
+  user: {id: number, name: string};  
+  paramsSubscription: Subscription; // 136 added subscription as a property...
 
   // 134 user.component.ts, injected the activated route here in order to access path data (specifically in this case the user id)
   constructor(
@@ -34,5 +38,12 @@ export class UserComponent implements OnInit {
       // arg.2. - tbd
       // arg.3. - tbd
       );
+  }
+
+  // 136 ...and added a call to unsubscribe in ngOnDestroy
+  // note that this happens automatically thx to angular
+  // but if you add your own observables you have to unsubscribe on your own
+  ngOnDestroy(){
+    this.paramsSubscription.unsubscribe();
   }
 }

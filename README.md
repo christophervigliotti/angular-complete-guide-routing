@@ -159,11 +159,13 @@ posted my q over at: https://stackoverflow.com/questions/71859165/how-to-apply-a
 
 132. Using Relative Paths in Programmatic Navigation
 
-    <!-- 132 servers.component.html, added a new button with a click listener that fires method onReload()-->
+<!-- 132 servers.component.html, added a new button with a click listener that fires method onReload()-->
     <button 
       class="btn btn-primary" 
       (click)="onReload()"
     >Reload Page</button>
+
+// servers.component.ts...
 
   /* 
   131 servers.component.ts, added arguments (and object properties) router and route (for use in function onReload()).
@@ -184,7 +186,7 @@ posted my q over at: https://stackoverflow.com/questions/71859165/how-to-apply-a
 
 ✅ 133. Passing Parameters to Routes
 
-  // 133 app.module.ts added this route with a dynamic placeholder named "id"
+// 133 app.module.ts added this route with a dynamic placeholder named "id"
   { 
     path: 'users/:id',
     component: UsersComponent 
@@ -192,6 +194,7 @@ posted my q over at: https://stackoverflow.com/questions/71859165/how-to-apply-a
 
 ✅ 134. Fetching Route Parameters
 
+// user.component.ts
     // 134 user.component.ts, injected the activated route here in order to access path data (specifically in this case the user id)
     constructor(
         private route: ActivatedRoute 
@@ -206,22 +209,22 @@ posted my q over at: https://stackoverflow.com/questions/71859165/how-to-apply-a
         }
     }
 
-    <!-- 134 user.component.html, added variable output via {{string interpolation}} -->
+<!-- 134 user.component.html, added variable output via {{string interpolation}} -->
     <p>User with ID {{user.id}} loaded.</p>
     <p>User name is {{user.name}}.</p>    
 
-    Outcome: http://localhost:4200/users/1/Vig displays the id of "1" and the user name of "Vig" as expected.
+Outcome: http://localhost:4200/users/1/Vig displays the id of "1" and the user name of "Vig" as expected.
 
 ✅ 135. Fetching Route Parameters Reactively
 
-    <!-- 135 user.component.html, a router link to user 10 (Anna) -->
+<!-- 135 user.component.html, a router link to user 10 (Anna) -->
     <a
         [routerLink]="['/users',10,'Anna']"
     >
         Load Anna
     </a>
 
-    // 135, user.component.ts... 
+// 135, user.component.ts... 
     ngOnInit() {
         console.log('user.component ngOnInit > "id" is "' + this.route.snapshot.params['id'] + '"');
         this.user = {
@@ -245,7 +248,15 @@ posted my q over at: https://stackoverflow.com/questions/71859165/how-to-apply-a
 
 136. An Important Note about Route Observables
 
+// user.component.ts...
+    paramsSubscription: Subscription; // 136 added subscription as a property...
 
+    // 136 ...and added a call to unsubscribe in ngOnDestroy
+    // note that this happens automatically thx to angular
+    // but if you add your own observables you have to unsubscribe on your own
+    ngOnDestroy(){
+        this.paramsSubscription.unsubscribe();
+    }
 
 🔜 137. Passing Query Parameters and Fragments
 
