@@ -370,6 +370,24 @@ onLoadServer(id: number){
 
 🔜 140. Setting up Child (Nested) Routes
 
+1.  Added router-outlet to users.component.html & servers.component.html.
+    This adds a new hook which will be used on all child routes of the servers (or users) component
+    Allows us to load nested/child routes.
+    It's magic.
+
+    <router-outlet></router-outlet>
+
+2.  Refactored the routes defined in app.module.ts, defining several child routes...
+
+    {path: '',component: HomeComponent}, 
+    {path: 'users',component: UsersComponent, children: [
+        {path: ':id/:name',component: UserComponent}
+    ]},
+    {path:'servers',component: ServersComponent, children: [
+        {path: ':id',component: ServerComponent},
+        {path: ':id/edit',component: EditServerComponent} 
+    ]},
+
 🔜 141. Using Query Parameters - Practice
 
 🔜 142. Configuring the Handling of Query Parameters
