@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { ServersService } from '../servers.service';
 
 @Component({
@@ -12,7 +12,8 @@ export class ServerComponent implements OnInit {
 
     constructor(
         private serversService: ServersService,
-        private route: ActivatedRoute // 139, server.component.ts, injected ActivatedRoute via the constructor
+        private route: ActivatedRoute, // 139, server.component.ts, injected ActivatedRoute via the constructor
+        private router: Router // 141, injected Router
     ){ 
 
     }
@@ -27,5 +28,10 @@ export class ServerComponent implements OnInit {
                 this.server = this.serversService.getServer(+params['id']);
             }
         );
+    }
+
+    // 141, added method onEdit that navigates to a relative path 'edit'
+    onEdit(){
+        this.router.navigate(['edit'],{relativeTo: this.route}); 
     }
 }

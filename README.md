@@ -368,7 +368,7 @@ onLoadServer(id: number){
     // this.paramsSubscription.unsubscribe();
   }
 
-🔜 140. Setting up Child (Nested) Routes
+✅ 140. Setting up Child (Nested) Routes
 
 1.  Added router-outlet to users.component.html & servers.component.html.
     This adds a new hook which will be used on all child routes of the servers (or users) component
@@ -388,7 +388,17 @@ onLoadServer(id: number){
         {path: ':id/edit',component: EditServerComponent} 
     ]},
 
-🔜 141. Using Query Parameters - Practice
+WORK_IN_PROGRESS 141. Using Query Parameters - Practice
+
+server.component.html...
+
+    <!-- 141 added a button to the server component w a click listener calling onEdit() -->
+    <button
+        class="btn btn-primary" 
+        (click)="onEdit()"
+    >Edit Server</button>
+
+re-watch, refine notes
 
 🔜 142. Configuring the Handling of Query Parameters
 

@@ -9,9 +9,13 @@
         * fragment 
         -->
         <!-- 139, servers.component.html, modified [routerLink]-->
+        <!-- 
+        141, servers.component.html, added an elvis operator that 
+        only sets the allowEdit query param to 1 if the server id is 3 
+        -->
         <a
             [routerLink]="['/servers',server.id]"
-            [queryParams]="{allowEdit:'1'}"
+            [queryParams]="{allowEdit:server.id === 3 ? '1' : '0'}"
             [fragment]="'loading'"
             href="#"
             class="list-group-item"
