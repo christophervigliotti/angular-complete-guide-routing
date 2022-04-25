@@ -15,31 +15,13 @@ import { Routes, RouterModule } from '@angular/router'; // 127
 
 // 127 defining our routes in app.module.ts (they also need to be registered to the imports array)
 const appRoutes: Routes = [
-  // aka localhost:4200
-  { 
-    path: '',
-    component: HomeComponent 
-  },
-  // aka localhost:4200/users
-  { 
-    path: 'users',
-    component: UsersComponent 
-  },
-  // 133 app.module.ts added this route with a dynamic placeholders named "id" and "name"
-  { 
-    path: 'users/:id/:name',
-    component: UsersComponent 
-  },
-  // aka localhost:4200/users
-  { 
-    path: 'servers',
-    component: ServersComponent 
-  },
-  // 137 route added app.module.ts
-  {
-    path: 'servers/:id/edit',
-    component: EditServerComponent
-  }
+  
+  {path: '',component: HomeComponent}, // aka localhost:4200
+  {path: 'users',component: UsersComponent},  // aka localhost:4200/users
+  {path: 'users/:id/:name',component: UsersComponent},// 133 app.module.ts added this route with a dynamic placeholders named "id" and "name"
+  {path: 'servers',component: ServersComponent },// aka localhost:4200/users  
+  {path: 'servers/:id',component: ServerComponent},// 139, app.module.ts, added this route
+  {path: 'servers/:id/edit',component: EditServerComponent}// 137 route added app.module.ts
 ];
 
 @NgModule({

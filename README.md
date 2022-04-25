@@ -317,6 +317,58 @@ onLoadServer(id: number){
 
 🔜 139. Practicing and some Common Gotchas
 
+<!-- 139, users.component.html, added [routerLink]-->
+    <a
+        [routerLink]="['/users',user.id, user.name]"
+        href="#"
+        class="list-group-item"
+        *ngFor="let user of users">
+        {{ user.name }}
+    </a>
+
+<!-- 139, servers.component.html, modified [routerLink]-->
+    <a
+        [routerLink]="['/servers',server.id]"
+        [queryParams]="{allowEdit:'1'}"
+        [fragment]="'loading'"
+        href="#"
+        class="list-group-item"
+        *ngFor="let server of servers">
+        {{ server.name }}
+    </a>
+
+// 139, app.module.ts, added this route
+    {path: 'servers/:id',component: ServerComponent},
+
+// 139, server.component.ts, injected ActivatedRoute via the constructor
+    constructor(
+        private serversService: ServersService,
+        private route: ActivatedRoute 
+    ){ 
+
+    }
+
+    // ...and in the same file...
+
+    ngOnInit() {
+        // 139, set this const equal to the param, and added + which converts params['id'] to a number
+        const id = +this.route.snapshot.params['id']; 
+
+        this.server = this.serversService.getServer(1);
+
+        // 139 added this subscribe method...get a new server when the id changes
+        this.route.params.subscribe(
+            (params: Params) => {
+                this.server = this.serversService.getServer(+params['id']);
+            }
+        );
+    }
+// 139, user.component.ts, removing the unsubscribe method made things work properly
+  ngOnDestroy(){
+    // this.paramsSubscription.unsubscribe();
+  }
+
+
 🔜 140. Setting up Child (Nested) Routes
 
 🔜 141. Using Query Parameters - Practice

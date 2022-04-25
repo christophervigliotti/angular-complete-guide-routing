@@ -18,10 +18,12 @@ export class ServersService {
   ];
 
   getServers() {
+    console.log('servers.service getServers ');
     return this.servers;
   }
 
   getServer(id: number) {
+    console.log('servers.service getServer > id ' + id);
     const server = this.servers.find(
       (s) => {
         return s.id === id;

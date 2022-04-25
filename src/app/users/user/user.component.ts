@@ -44,6 +44,6 @@ export class UserComponent implements OnInit, OnDestroy {
   // note that this happens automatically thx to angular
   // but if you add your own observables you have to unsubscribe on your own
   ngOnDestroy(){
-    this.paramsSubscription.unsubscribe();
+    // 139, user.component.ts, removing this made the user section work properly >> this.paramsSubscription.unsubscribe();
   }
 }
