@@ -157,7 +157,7 @@ posted my q over at: https://stackoverflow.com/questions/71859165/how-to-apply-a
     }
 
 
-132. Using Relative Paths in Programmatic Navigation
+✅ 132. Using Relative Paths in Programmatic Navigation
 
 <!-- 132 servers.component.html, added a new button with a click listener that fires method onReload()-->
     <button 
@@ -315,7 +315,7 @@ onLoadServer(id: number){
     this.route.fragment.subscribe();
     ...
 
-🔜 139. Practicing and some Common Gotchas
+✅ 139. Practicing and some Common Gotchas
 
 <!-- 139, users.component.html, added [routerLink]-->
     <a
@@ -367,7 +367,6 @@ onLoadServer(id: number){
   ngOnDestroy(){
     // this.paramsSubscription.unsubscribe();
   }
-
 
 🔜 140. Setting up Child (Nested) Routes
 
