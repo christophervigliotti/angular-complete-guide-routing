@@ -370,14 +370,7 @@ onLoadServer(id: number){
 
 ✅ 140. Setting up Child (Nested) Routes
 
-1.  Added router-outlet to users.component.html & servers.component.html.
-    This adds a new hook which will be used on all child routes of the servers (or users) component
-    Allows us to load nested/child routes.
-    It's magic.
-
-    <router-outlet></router-outlet>
-
-2.  Refactored the routes defined in app.module.ts, defining several child routes...
+Refactored the routes defined in app.module.ts, defining several child routes...
 
     {path: '',component: HomeComponent}, 
     {path: 'users',component: UsersComponent, children: [
@@ -388,17 +381,74 @@ onLoadServer(id: number){
         {path: ':id/edit',component: EditServerComponent} 
     ]},
 
-WORK_IN_PROGRESS 141. Using Query Parameters - Practice
+Added router-outlet to users.component.html & servers.component.html.
+    This adds a new hook which will be used on all child routes of the servers (or users) component
+    Allows us to load nested/child routes.
+    It's magic.
 
-server.component.html...
+    <router-outlet></router-outlet>
 
-    <!-- 141 added a button to the server component w a click listener calling onEdit() -->
+✅ 141. Using Query Parameters - Practice
+
+Added a button to server.component.html w a click listener calling onEdit()...
+
     <button
         class="btn btn-primary" 
         (click)="onEdit()"
     >Edit Server</button>
 
-re-watch, refine notes
+In server.component.ts...
+
+    // injecting router for use in onEdit()...
+    constructor(
+        private serversService: ServersService,
+        private route: ActivatedRoute, 
+        private router: Router // < this is new
+    ){ 
+    }
+
+    // method called by cooresponding .html file...
+    onEdit(){
+        this.router.navigate(['edit'],{relativeTo: this.route}); 
+        // ^ navigates to relative path 'edit'
+    }   
+
+servers.component.html...
+
+        <!-- 
+        141, servers.component.html, added an elvis operator that 
+        only sets the allowEdit query param to 1 if the server id is 3 
+        -->
+        <a
+            [routerLink]="['/servers',server.id]"
+            [queryParams]="{allowEdit:server.id === 3 ? '1' : '0'}" 
+            [fragment]="'loading'"
+            href="#"
+            class="list-group-item"
+            *ngFor="let server of servers">
+            {{ server.name }}
+        </a>  
+
+edit-server.component.ts...
+
+    we want to be able to retrieve our query params...
+
+    // 141 setting property this.allowEdit based on the value of the query param allowEdit
+    this.route.queryParams.subscribe(
+        (queryParams: Params) => {
+            this.allowEdit = queryParams['allowEdit'] === '1' ? true : false;
+        }
+    );    
+
+<!-- edit-server.component.html, conditional view/edit display logic added -->
+
+    <h4 *ngIf="!allowEdit">You Shall Not Pass (or edit this Server)</h4>
+    <div *ngIf="allowEdit">   
+        ...code continues...
+
+doesn't work (doesn't preserve relevant query param(s) when clicking 'Edit Server' button)
+
+    will fix in 142
 
 🔜 142. Configuring the Handling of Query Parameters
 

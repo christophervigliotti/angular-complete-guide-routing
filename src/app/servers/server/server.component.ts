@@ -15,7 +15,6 @@ export class ServerComponent implements OnInit {
         private route: ActivatedRoute, // 139, server.component.ts, injected ActivatedRoute via the constructor
         private router: Router // 141, injected Router
     ){ 
-
     }
 
     ngOnInit() {

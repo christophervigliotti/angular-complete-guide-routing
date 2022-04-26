@@ -14,6 +14,7 @@ import { ServersService } from './servers/servers.service';
 import { Routes, RouterModule } from '@angular/router'; // 127
 
 // 127 defining our routes in app.module.ts (they also need to be registered to the imports array)
+// 140, refactored to define child routes
 const appRoutes: Routes = [
   
     {path: '',component: HomeComponent}, 
