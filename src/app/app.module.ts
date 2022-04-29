@@ -13,9 +13,12 @@ import { ServerComponent } from './servers/server/server.component';
 import { ServersService } from './servers/servers.service';
 import { Routes, RouterModule } from '@angular/router';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component'; // 127
+import { AppRoutingModule } from './app-routing-module';
 
 // 127 defining our routes in app.module.ts (they also need to be registered to the imports array)
 // 140, refactored to define child routes
+// 145, app.module.ts, moved appRoutes constant to app-routing-module.ts
+/*
 const appRoutes: Routes = [
   
     {path: '',component: HomeComponent}, 
@@ -30,7 +33,7 @@ const appRoutes: Routes = [
     {path: 'not-found', component: PageNotFoundComponent},
     {path: '**', redirectTo: '/not-found'}
 ];
-
+*/
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,7 +48,10 @@ const appRoutes: Routes = [
   imports: [
     BrowserModule,
     FormsModule,
-    RouterModule.forRoot(appRoutes) // 127
+    /* 145, removed RouterModule.forRoot(appRoutes)
+    also added AppRoutingModule...
+    */
+   AppRoutingModule
   ],
   providers: [ServersService],
   bootstrap: [AppComponent]

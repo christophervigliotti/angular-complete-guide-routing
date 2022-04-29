@@ -508,6 +508,57 @@ ng g c page-not-found
 
 145. Outsourcing the Route Configuration 
 
+// 145, app.module.ts, moved appRoutes constant to app-routing-module.ts
+
+    /* also, in "imports", 
+        (a) removed RouterModule.forRoot(appRoutes)
+        (b) added AppRoutingModule 
+    */
+    imports: [
+        BrowserModule,
+        FormsModule,
+        // RouterModule.forRoot(appRoutes),
+        AppRoutingModule
+    ],
+
+// created app-routing-module.ts
+
+    import { EditServerComponent } from './servers/edit-server/edit-server.component';
+    import { HomeComponent } from './home/home.component';
+    import { NgModule } from '@angular/core';
+    import { PageNotFoundComponent } from './page-not-found/page-not-found.component'; // 127
+    import { ServerComponent } from './servers/server/server.component';
+    import { ServersComponent } from './servers/servers.component';
+    import { Routes, RouterModule } from '@angular/router';
+    import { UserComponent } from './users/user/user.component';
+    import { UsersComponent } from './users/users.component';
+
+    const appRoutes: Routes = [
+        {path: '',component: HomeComponent}, 
+        {path: 'users',component: UsersComponent, children: [
+            {path: ':id/:name',component: UserComponent}
+        ]},
+        {path:'servers',component: ServersComponent, children: [
+            {path: ':id',component: ServerComponent},
+            {path: ':id/edit',component: EditServerComponent} 
+        ]},
+        {path: 'not-found', component: PageNotFoundComponent},
+        {path: '**', redirectTo: '/not-found'}
+    ];
+
+    @NgModule({
+        imports: [
+            RouterModule.forRoot(appRoutes)
+        ],
+        exports: [
+            RouterModule
+        ]
+    })
+
+    export class AppRoutingModule {
+
+    }
+
 146. An Introduction to Guards
 
 147. Protecting Routes with canActivate
