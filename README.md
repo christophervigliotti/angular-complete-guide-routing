@@ -471,9 +471,40 @@ when navigating to 'edit'.  Makes sense!
 
 143. Redirecting and Wildcard Routes
 
+ng g c page-not-found
 
+// 143, app-module.ts, added routes
+    {path: 'not-found', component: PageNotFoundComponent},
+    {path: 'something', redirectTo: '/not-found'}
+
+    192.168.1.77:4200/something/ now redirects to 
+    192.168.1.77:4200/not-found/
+
+    ...changed to...
+    {path: 'not-found', component: PageNotFoundComponent},
+    {path: '**', redirectTo: '/not-found'}
+    making sure that the ** redirect is at the end of the routes
+
+    with this now all undefined routes redirect to not-found!
 
 144. Important: Redirection Path Matching
+
+    Important: Redirection Path Matching
+    In our example, we didn't encounter any issues when we tried to redirect the user. But that's not always the case when adding redirections.
+
+    By default, Angular matches paths by prefix. That means, that the following route will match both /recipes  and just / 
+
+    { path: '', redirectTo: '/somewhere-else' } 
+
+    Actually, Angular will give you an error here, because that's a common gotcha: This route will now ALWAYS redirect you! Why?
+
+    Since the default matching strategy is "prefix" , Angular checks if the path you entered in the URL does start with the path specified in the route. Of course every path starts with ''  (Important: That's no whitespace, it's simply "nothing").
+
+    To fix this behavior, you need to change the matching strategy to "full" :
+
+    { path: '', redirectTo: '/somewhere-else', pathMatch: 'full' } 
+
+    Now, you only get redirected, if the full path is ''  (so only if you got NO other content in your path in this example).
 
 145. Outsourcing the Route Configuration
 

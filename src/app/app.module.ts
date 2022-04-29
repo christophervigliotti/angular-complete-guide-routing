@@ -11,7 +11,8 @@ import { UserComponent } from './users/user/user.component';
 import { EditServerComponent } from './servers/edit-server/edit-server.component';
 import { ServerComponent } from './servers/server/server.component';
 import { ServersService } from './servers/servers.service';
-import { Routes, RouterModule } from '@angular/router'; // 127
+import { Routes, RouterModule } from '@angular/router';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component'; // 127
 
 // 127 defining our routes in app.module.ts (they also need to be registered to the imports array)
 // 140, refactored to define child routes
@@ -25,6 +26,9 @@ const appRoutes: Routes = [
         {path: ':id',component: ServerComponent},
         {path: ':id/edit',component: EditServerComponent} 
     ]},
+    // 143, app-module.ts, added routes
+    {path: 'not-found', component: PageNotFoundComponent},
+    {path: '**', redirectTo: '/not-found'}
 ];
 
 @NgModule({
@@ -35,7 +39,8 @@ const appRoutes: Routes = [
     ServersComponent,
     UserComponent,
     EditServerComponent,
-    ServerComponent
+    ServerComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
