@@ -5,11 +5,11 @@ This is one of several repos that I created for the course "Angular - The Comple
 ## Chapters
 
 ```
-✅ 124. Module Introduction 
+124. Module Introduction 
 
-✅ 125. Why do we need a Router? 
+125. Why do we need a Router? 
 
-✅ 126. Understanding the Example Project 
+126. Understanding the Example Project 
 
 In our app, we got three sections:
 
@@ -22,7 +22,7 @@ In our app, we got three sections:
 
 This app will be improved by adding routing but definitely feel free to play around with it - besides routing, everything should be working fine.
 
-✅ 127. Setting up and Loading Routes 
+127. Setting up and Loading Routes 
 
 // 127 defining our routes in app.module.ts (they also need to be registered to the imports array)
 
@@ -73,7 +73,7 @@ https://getbootstrap.com/docs/4.0/components/navs/#tabs
         <a href="#" class="nav-link">Users</a></li>
     </ul>
 
-✅ 128. Navigating with Router Links
+128. Navigating with Router Links
 
 <!--
 128 router links
@@ -95,7 +95,7 @@ https://getbootstrap.com/docs/4.0/components/navs/#tabs
         class="nav-link">Users</a></li>
     </ul>
 
-✅ 129. Understanding Navigation Paths
+129. Understanding Navigation Paths
 
 <!-- 
     129 added link to servers.component.html...
@@ -106,7 +106,7 @@ https://getbootstrap.com/docs/4.0/components/navs/#tabs
 -->
     <a routerLink="/servers">Reload Page</a>
 
-✅ 130. Styling Active Router Links
+130. Styling Active Router Links
 
 <!-- 
 130 added routerLinkActive and (to home page) routerLinkActiveOptions
@@ -136,7 +136,7 @@ posted my q over at: https://stackoverflow.com/questions/71859165/how-to-apply-a
     </li>
     </ul>
 
-✅ 131. Navigating Programmatically
+131. Navigating Programmatically
 
 // home.component.ts
     export class HomeComponent implements OnInit {
@@ -157,7 +157,7 @@ posted my q over at: https://stackoverflow.com/questions/71859165/how-to-apply-a
     }
 
 
-✅ 132. Using Relative Paths in Programmatic Navigation
+132. Using Relative Paths in Programmatic Navigation
 
 <!-- 132 servers.component.html, added a new button with a click listener that fires method onReload()-->
     <button 
@@ -184,7 +184,7 @@ posted my q over at: https://stackoverflow.com/questions/71859165/how-to-apply-a
     // this.router.navigate(['/servers'],{relativeTo: this.route});
   }
 
-✅ 133. Passing Parameters to Routes
+133. Passing Parameters to Routes
 
 // 133 app.module.ts added this route with a dynamic placeholder named "id"
   { 
@@ -192,7 +192,7 @@ posted my q over at: https://stackoverflow.com/questions/71859165/how-to-apply-a
     component: UsersComponent 
   },
 
-✅ 134. Fetching Route Parameters
+134. Fetching Route Parameters
 
 // user.component.ts
     // 134 user.component.ts, injected the activated route here in order to access path data (specifically in this case the user id)
@@ -215,7 +215,7 @@ posted my q over at: https://stackoverflow.com/questions/71859165/how-to-apply-a
 
 Outcome: http://localhost:4200/users/1/Vig displays the id of "1" and the user name of "Vig" as expected.
 
-✅ 135. Fetching Route Parameters Reactively
+135. Fetching Route Parameters Reactively
 
 <!-- 135 user.component.html, a router link to user 10 (Anna) -->
     <a
@@ -246,7 +246,7 @@ Outcome: http://localhost:4200/users/1/Vig displays the id of "1" and the user n
         );
     }
 
-✅ 136. An Important Note about Route Observables
+136. An Important Note about Route Observables
 
 // user.component.ts...
     paramsSubscription: Subscription; // 136 added subscription as a property...
@@ -258,7 +258,7 @@ Outcome: http://localhost:4200/users/1/Vig displays the id of "1" and the user n
         this.paramsSubscription.unsubscribe();
     }
 
-✅ 137. Passing Query Parameters and Fragments
+137. Passing Query Parameters and Fragments
 
 // 137 route added app.module.ts
     {
@@ -301,7 +301,7 @@ onLoadServer(id: number){
     ); 
 }
 
-✅ 138. Retrieving Query Parameters and Fragments
+138. Retrieving Query Parameters and Fragments
 
 // edit-server.component.ts...
     constructor(
@@ -315,7 +315,7 @@ onLoadServer(id: number){
     this.route.fragment.subscribe();
     ...
 
-✅ 139. Practicing and some Common Gotchas
+139. Practicing and some Common Gotchas
 
 <!-- 139, users.component.html, added [routerLink]-->
     <a
@@ -368,7 +368,7 @@ onLoadServer(id: number){
     // this.paramsSubscription.unsubscribe();
   }
 
-✅ 140. Setting up Child (Nested) Routes
+140. Setting up Child (Nested) Routes
 
 Refactored the routes defined in app.module.ts, defining several child routes...
 
@@ -388,7 +388,7 @@ Added router-outlet to users.component.html & servers.component.html.
 
     <router-outlet></router-outlet>
 
-✅ 141. Using Query Parameters - Practice
+141. Using Query Parameters - Practice
 
 Added a button to server.component.html w a click listener calling onEdit()...
 
@@ -450,31 +450,50 @@ doesn't work (doesn't preserve relevant query param(s) when clicking 'Edit Serve
 
     will fix in 142
 
-🔜 142. Configuring the Handling of Query Parameters
+142. Configuring the Handling of Query Parameters
 
-🔜 143. Redirecting and Wildcard Routes
+/* 
+142, server.component.ts, added a third element to the 
+second argument in navigate() called "queryParamsHandling" 
+that...lets us handle query params (naturally lol).  In this 
+example we are preserving or maintaining our query params 
+when navigating to 'edit'.  Makes sense!
+*/ 
+    onEdit(){
+        this.router.navigate(
+            ['edit'],
+            {
+                relativeTo: this.route, 
+                queryParamsHandling: 'preserve'
+            }
+        ); 
+    }
 
-🔜 144. Important: Redirection Path Matching
+143. Redirecting and Wildcard Routes
 
-🔜 145. Outsourcing the Route Configuration
 
-🔜 146. An Introduction to Guards
 
-🔜 147. Protecting Routes with canActivate
+144. Important: Redirection Path Matching
 
-🔜 148. Protecting Child (Nested) Routes with canActivateChild
+145. Outsourcing the Route Configuration
 
-🔜 149. Using a Fake Auth Service
+146. An Introduction to Guards
 
-🔜 150. Controlling Navigation with canDeactivate
+147. Protecting Routes with canActivate
 
-🔜 151. Passing Static Data to a Route
+148. Protecting Child (Nested) Routes with canActivateChild
 
-🔜 152. Resolving Dynamic Data with the resolve Guard
+149. Using a Fake Auth Service
 
-🔜 153. Understanding Location Strategies
+150. Controlling Navigation with canDeactivate
 
-🔜 154. Wrap Up
+151. Passing Static Data to a Route
+
+152. Resolving Dynamic Data with the resolve Guard
+
+153. Understanding Location Strategies
+
+154. Wrap Up
 ```
 
 # More Info

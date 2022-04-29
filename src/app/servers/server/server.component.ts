@@ -30,7 +30,20 @@ export class ServerComponent implements OnInit {
     }
 
     // 141, added method onEdit that navigates to a relative path 'edit'
+    /* 
+    142, server.component.ts, added a third element to the 
+    second argument in navigate() called "queryParamsHandling" 
+    that...lets us handle query params (naturally lol).  In this 
+    example we are preserving or maintaining our query params 
+    when navigating to 'edit'.  Makes sense!
+    */ 
     onEdit(){
-        this.router.navigate(['edit'],{relativeTo: this.route}); 
+        this.router.navigate(
+            ['edit'],
+            {
+                relativeTo: this.route, 
+                queryParamsHandling: 'preserve'
+            }
+        ); 
     }
 }
