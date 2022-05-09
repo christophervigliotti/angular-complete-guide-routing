@@ -14,13 +14,15 @@ import { ServersService } from './servers/servers.service';
 import { Routes, RouterModule } from '@angular/router';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component'; // 127
 import { AppRoutingModule } from './app-routing-module';
+import { AuthService } from './auth.service';
+import { AuthGuard } from './auth-guard.service';
 
 // 127 defining our routes in app.module.ts (they also need to be registered to the imports array)
 // 140, refactored to define child routes
 // 145, app.module.ts, moved appRoutes constant to app-routing-module.ts
 /*
 const appRoutes: Routes = [
-  
+  p
     {path: '',component: HomeComponent}, 
     {path: 'users',component: UsersComponent, children: [
         {path: ':id/:name',component: UserComponent}
@@ -53,7 +55,7 @@ const appRoutes: Routes = [
     */
    AppRoutingModule
   ],
-  providers: [ServersService],
+  providers: [ServersService, AuthService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -561,7 +561,13 @@ ng g c page-not-found
 
 146. An Introduction to Guards
 
+code which is executed 
+a. when a route is loaded, or 
+b. when you want to leave a route  
+
 147. Protecting Routes with canActivate
+
+🏩 code completed, but go back and provide comments in-code and also here
 
 148. Protecting Child (Nested) Routes with canActivateChild
 
