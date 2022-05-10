@@ -561,13 +561,56 @@ ng g c page-not-found
 
 146. An Introduction to Guards
 
-code which is executed 
-a. when a route is loaded, or 
-b. when you want to leave a route  
+    code which is executed 
+        a. when a route is loaded, or 
+        b. when you want to leave a route  
 
 147. Protecting Routes with canActivate
 
-🏩 code completed, but go back and provide comments in-code and also here
+    auth-guard.service.ts 
+
+        created
+
+        extends CanActivate
+            this forces you to have a canActivate() method
+
+        canActivate() method
+
+            args
+                ActivatedRouteSnapshot
+                RouterStateSnapshot
+
+            returns one of
+                Observable, Promise or boolean
+
+            logic flow
+                return logic flow...
+                    1. the result of the isAuthenticated() method
+                    2. passes the boolean from #1 to chained method .then() 
+                    3. returns true if authenticated, otherwise navigates to '/'
+
+        @Injectable()
+            required so that we can inject another service into this service
+            in this case we are injecting authService (for use in canActivate())
+
+    auth.service.ts
+        created
+        loggedIn property
+        methods for logging in, logging out 
+        method isAuthenticated
+
+    how we implement this fanciness
+
+        app-routing-module.ts, routes array, 'servers'...
+
+            {path:'servers', canActivate:[AuthGuard], component: ServersComponent, children: [
+                {path: ':id',component: ServerComponent},
+                {path: ':id/edit',component: EditServerComponent} 
+            ]},
+
+            in this example the guard(s) are applied to child routes as well as the parent route
+
+    works great!
 
 148. Protecting Child (Nested) Routes with canActivateChild
 
