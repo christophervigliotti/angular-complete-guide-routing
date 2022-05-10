@@ -614,6 +614,38 @@ ng g c page-not-found
 
 148. Protecting Child (Nested) Routes with canActivateChild
 
+    auth-guard-service...
+
+        added method canActivateChild() 
+
+        canActivateChild
+            (
+                route: ActivatedRouteSnapshot,
+                state: RouterStateSnapshot
+            ):
+            Observable<boolean> | Promise<boolean> | boolean {
+                return this.canActivate(route, state);
+            }
+
+        this method fires for all routes that are children of the specified route(s) 
+            (specified in this case in app-routing-module.ts)
+
+    modified the 'servers' route in app-routing-module.ts...
+
+        ...
+        {
+            path:'servers', 
+            //  we no longer need this canActivate:[AuthGuard], 
+            canActivateChild:[AuthGuard], // this was added
+            component: ServersComponent, 
+            children: 
+                [
+                    {path: ':id',component: ServerComponent},
+                    {path: ':id/edit',component: EditServerComponent} 
+                ]
+        },
+        ...      
+
 149. Using a Fake Auth Service
 
 150. Controlling Navigation with canDeactivate
