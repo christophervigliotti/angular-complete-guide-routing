@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-home',
@@ -9,7 +10,8 @@ import { Router } from '@angular/router';
 export class HomeComponent implements OnInit {
 
   constructor(
-    private router: Router// 131 added this arg so that we can use it in method onLoadServers()
+    private router: Router, // 131 added this arg so that we can use it in method onLoadServers()
+    private authService: AuthService // 149 injected AuthService
   ) { }
 
   ngOnInit() {
@@ -33,5 +35,15 @@ export class HomeComponent implements OnInit {
       fragment: 'loading'}
     ); 
   }
+
+    // 149 added
+    onLogin(){
+        console.log('home.component onLogin');
+        this.authService.login();
+    }
+    onLogout(){
+        console.log('home.component onLogout');
+        this.authService.logout();
+    }
 
 }

@@ -648,6 +648,25 @@ ng g c page-not-found
 
 149. Using a Fake Auth Service
 
+    home.component.html gets two buttons...
+    <button class="btn btn-default" (click)="onLogin()">Login</button>
+    <button class="btn btn-default" (click)="onLogout()">Logout</button>
+
+    ...and added the methods to home.component.ts...
+    onLogin(){
+        console.log('home.component onLogin');
+        this.authService.login();
+    }
+    onLogout(){
+        console.log('home.component onLogout');
+        this.authService.logout();
+    }
+    ...and in the constructor...
+    constructor(
+        private router: Router, 
+        private authService: AuthService // << don't forget to import AuthService
+    ) { }
+
 150. Controlling Navigation with canDeactivate
 
 151. Passing Static Data to a Route
@@ -658,6 +677,10 @@ ng g c page-not-found
 
 154. Wrap Up
 ```
+
+## Percent Complete
+
+At this end of this section I am __% complete with this course.
 
 # More Info
 
