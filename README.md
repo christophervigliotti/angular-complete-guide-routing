@@ -669,6 +669,16 @@ ng g c page-not-found
 
 150. Controlling Navigation with canDeactivate
 
+    edit-server.component.ts
+
+    can-deactivate.guard.service.ts
+
+    app-routing.module.ts
+
+    TODO: stopped at 7:09...start over, grab notes as I rewatch then proceed to second
+    half of this lecture
+
+
 151. Passing Static Data to a Route
 
 152. Resolving Dynamic Data with the resolve Guard

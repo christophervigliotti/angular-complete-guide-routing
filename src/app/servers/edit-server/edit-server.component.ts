@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 
 import { ServersService } from '../servers.service';
 
@@ -14,10 +14,13 @@ export class EditServerComponent implements OnInit {
   serverStatus = '';
   allowEdit = false; // 141 new property
 
+  changesSaved = false; // 150
+
     constructor(
         private serversService: ServersService,
         // 138 injecting the ActivatedRoute 
-        private route: ActivatedRoute
+        private route: ActivatedRoute,
+        private router: Router // 150 new
     ) { }
 
   ngOnInit() {
@@ -42,6 +45,11 @@ export class EditServerComponent implements OnInit {
 
   onUpdateServer() {
     this.serversService.updateServer(this.server.id, {name: this.serverName, status: this.serverStatus});
-  }
+
+    // 150 update changesSaved then navigate to parent
+    this.changesSaved = true;
+    this.router.navigate(['../'],{relativeTo: this.route});
+
+}
 
 }
