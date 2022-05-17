@@ -763,7 +763,7 @@ ng g c page-not-found
 
 150.5 edit-server.component.ts >> ngOnInit EXERCISE: subscribe route params to update the id if params change
 
-    next time
+    next time >> see https://www.udemy.com/course/the-complete-guide-to-angular-2/learn/lecture/6656346#questions/11512036
 
 151. Passing Static Data to a Route
 
