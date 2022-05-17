@@ -671,13 +671,99 @@ ng g c page-not-found
 
     edit-server.component.ts
 
-    can-deactivate.guard.service.ts
+        new property
+            changesSaved = false;
+
+        new property (via injection via the constructor)
+            private router: Router 
+
+        new logic added to onUpdateServer
+            this.changesSaved = true;
+            this.router.navigate(['../'],{relativeTo: this.route});
+            can-deactivate.guard.service.ts
+
+    created can-deactivate-guard.service.ts
+
+        import { 
+            ActivatedRouteSnapshot, 
+            CanDeactivate, 
+            RouterStateSnapshot, 
+            UrlTree 
+        } from "@angular/router";
+        import { Observable } from "rxjs";
+
+        export interface CanComponentDeactivate {
+            canDeactivate: () => 
+                // returns an Observable, a Promise or a boolean
+                Observable<boolean> 
+                | Promise<boolean> 
+                | boolean;
+        } 
+
+        // ? why do an interface here (as opposed to just using a variation of the implementation code below) ?
+
+        export 
+            class CanDeactivateGuard 
+            implements CanDeactivate<CanComponentDeactivate> {
+
+            canDeactivate(
+                component: CanComponentDeactivate, 
+                currentRoute: ActivatedRouteSnapshot, 
+                currentState: RouterStateSnapshot, 
+                // returns an Observable, a Promise or a boolean
+                nextState?: RouterStateSnapshot): 
+                    // returns an Observable, a Promise or a boolean
+                    Observable<boolean> 
+                    | Promise<boolean> 
+                    | boolean
+                    {
+                        return component.canDeactivate();
+                    }
+        }   
 
     app-routing.module.ts
 
-    TODO: stopped at 7:09...start over, grab notes as I rewatch then proceed to second
-    half of this lecture
+        changed this route
+            {
+                path: ':id/edit',
+                component: EditServerComponent
+            } 
+        to this
+            {
+                path: ':id/edit',
+                component: EditServerComponent, 
+                canDeactivate: [CanDeactivateGuard]
+            } 
 
+    app.module.ts
+
+        added CanDeactivateGuard to providers array of @NgModule
+
+    implement the interface in edit-server.component.ts @ 8:07
+
+        canDeactivate(): boolean | Observable<boolean> | Promise<boolean> {
+            if(!this.allowEdit){
+                return true;
+            }
+            if(
+                (this.serverName !== this.server.name || this.serverStatus !== this.server.status) 
+                && !this.changesSaved
+            ){
+                return confirm('Do you want to discard the changes?');
+            }else{
+                return true;
+            }
+        }
+
+    changed a few lines of code in edit-server.component.ts method ngOnInit...
+
+        const id = +this.route.snapshot.params['id']; // << new
+        this.server = this.serversService.getServer(id);
+        // EXERCISE: subscribe route params to update the id if params change << TODO
+
+150.5 edit-server.component.ts >> ngOnInit EXERCISE: subscribe route params to update the id if params change
+
+    next time
 
 151. Passing Static Data to a Route
 

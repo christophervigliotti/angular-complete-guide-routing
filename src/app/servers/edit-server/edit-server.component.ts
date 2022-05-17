@@ -1,24 +1,31 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { Observable } from 'rxjs';
 
 import { ServersService } from '../servers.service';
+import { CanComponentDeactivate } from './can-deactivate-guard.service';
 
 @Component({
   selector: 'app-edit-server',
   templateUrl: './edit-server.component.html',
   styleUrls: ['./edit-server.component.css']
 })
-export class EditServerComponent implements OnInit {
-  server: {id: number, name: string, status: string};
-  serverName = '';
-  serverStatus = '';
-  allowEdit = false; // 141 new property
+export class EditServerComponent 
+    implements 
+        OnInit,
+        CanComponentDeactivate // 150 added it
+    {
 
-  changesSaved = false; // 150
+    // properties
+    server: {id: number, name: string, status: string};
+    serverName = '';
+    serverStatus = '';
+    allowEdit = false; // 141 new property
+    changesSaved = false; // 150
 
     constructor(
+        // properties, injected
         private serversService: ServersService,
-        // 138 injecting the ActivatedRoute 
         private route: ActivatedRoute,
         private router: Router // 150 new
     ) { }
@@ -38,18 +45,32 @@ export class EditServerComponent implements OnInit {
         }
     );
     this.route.fragment.subscribe();
-    this.server = this.serversService.getServer(1);
+    const id = +this.route.snapshot.params['id']; // 150 added
+    this.server = this.serversService.getServer(id);
+    // EXERCISE: subscribe route params to update the id if params change
     this.serverName = this.server.name;
     this.serverStatus = this.server.status;
   }
 
-  onUpdateServer() {
-    this.serversService.updateServer(this.server.id, {name: this.serverName, status: this.serverStatus});
+    onUpdateServer() {
+        this.serversService.updateServer(this.server.id, {name: this.serverName, status: this.serverStatus});
+        // 150 update changesSaved then navigate to parent
+        this.changesSaved = true;
+        this.router.navigate(['../'],{relativeTo: this.route});
+    }
 
-    // 150 update changesSaved then navigate to parent
-    this.changesSaved = true;
-    this.router.navigate(['../'],{relativeTo: this.route});
-
-}
-
+    // 150 implemented...
+    canDeactivate(): boolean | Observable<boolean> | Promise<boolean> {
+        if(!this.allowEdit){
+            return true;
+        }
+        if(
+            (this.serverName !== this.server.name || this.serverStatus !== this.server.status) 
+            && !this.changesSaved
+        ){
+            return confirm('Do you want to discard the changes?');
+        }else{
+            return true;
+        }
+    }
 }

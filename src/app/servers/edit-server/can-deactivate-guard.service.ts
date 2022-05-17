@@ -11,7 +11,7 @@ export interface CanComponentDeactivate {
 } 
 
 export 
-    class CanDeactivateGuard 
+    class CanDeactivateGuard  
     implements CanDeactivate<CanComponentDeactivate> {
 
     canDeactivate(
