@@ -776,6 +776,10 @@ ng g c page-not-found
 
 151. Passing Static Data to a Route
 
+    ng g c error-page
+
+    not working as expected
+
 152. Resolving Dynamic Data with the resolve Guard
 
 153. Understanding Location Strategies

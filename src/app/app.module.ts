@@ -17,6 +17,7 @@ import { AppRoutingModule } from './app-routing-module';
 import { AuthService } from './auth.service';
 import { AuthGuard } from './auth-guard.service';
 import { CanDeactivateGuard } from './servers/edit-server/can-deactivate-guard.service';
+import { ErrorPageComponent } from './error-page/error-page.component';
 
 // 127 defining our routes in app.module.ts (they also need to be registered to the imports array)
 // 140, refactored to define child routes
@@ -45,7 +46,8 @@ const appRoutes: Routes = [
     UserComponent,
     EditServerComponent,
     ServerComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    ErrorPageComponent
   ],
   imports: [
     BrowserModule,

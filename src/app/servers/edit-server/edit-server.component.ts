@@ -36,6 +36,7 @@ export class EditServerComponent
     // console.log(this.route.snapshot.queryParams);
     // console.log(this.route.snapshot.fragment);
 
+    // 150.5 edit-server.component.ts >> ngOnInit EXERCISE: subscribe route params to update the id if params change
     this.route.params.subscribe(
         (params: Params) => {
           this.server = this.serversService.getServer(+params['id']);
