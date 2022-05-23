@@ -778,9 +778,38 @@ ng g c page-not-found
 
     ng g c error-page
 
-    not working as expected
+    changed a route in app-routing-module.ts
+        // was...{path: 'not-found', component: PageNotFoundComponent},
+        // ...is...
+        {
+            path: 'not-found', 
+            component: ErrorPageComponent, 
+            data: 
+            {
+                message: 'This is a "page not found" message hard-coded into the route at app-routing-module.ts'
+            }
+        },
+
+        ...subscribe action happening in error-page.component.ts...
+            ngOnInit(): void {
+                /* we could grab the error message like this...
+                this.errorMessage = this.route.snapshot.data['message'];
+                ...but if this could possibly change while you are on the page we should subscribe... */
+                this.route.data.subscribe(
+                    (data: Data) => {
+                        this.errorMessage = data['message'];
+                        console.log('error-page > ngOnInit data...');
+                        console.log(data);
+                    }
+                );
+            }        
+
+        and in error-page.component.html we display the message...
+            <p>{{ errorMessage }}</p>
 
 152. Resolving Dynamic Data with the resolve Guard
+
+
 
 153. Understanding Location Strategies
 
