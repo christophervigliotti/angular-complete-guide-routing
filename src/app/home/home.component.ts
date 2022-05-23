@@ -38,11 +38,11 @@ export class HomeComponent implements OnInit {
 
     // 149 added
     onLogin(){
-        console.log('home.component onLogin');
+        console.log('home > onLogin');
         this.authService.login();
     }
     onLogout(){
-        console.log('home.component onLogout');
+        console.log('home > onLogout');
         this.authService.logout();
     }
 

@@ -763,7 +763,16 @@ ng g c page-not-found
 
 150.5 edit-server.component.ts >> ngOnInit EXERCISE: subscribe route params to update the id if params change
 
-    next time >> see https://www.udemy.com/course/the-complete-guide-to-angular-2/learn/lecture/6656346#questions/11512036
+    edit-server...
+
+        this.route.params.subscribe(
+            (params: Params) => {
+            this.server = this.serversService.getServer(+params['id']);
+            this.serverName = this.server.name;
+            this.serverStatus = this.server.status;
+            console.log('edit-server > ngOnInit params.subscribe id ' + params['id']);
+            }
+        )
 
 151. Passing Static Data to a Route
 

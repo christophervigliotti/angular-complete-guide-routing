@@ -20,7 +20,7 @@ export class UserComponent implements OnInit, OnDestroy {
 
   // 134 user.component.ts, using route to get the param value for ID
   ngOnInit() {
-    console.log('user.component ngOnInit > "id" is "' + this.route.snapshot.params['id'] + '"');
+    console.log('user > ngOnInit id is "' + this.route.snapshot.params['id'] + '"');
     this.user = {
       id: this.route.snapshot.params['id'],
       name: this.route.snapshot.params['name']
