@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params, Router } from '@angular/router';
+import { ActivatedRoute, Params, Router, Data } from '@angular/router';
 import { ServersService } from '../servers.service';
 
 @Component({
@@ -18,15 +18,23 @@ export class ServerComponent implements OnInit {
     }
 
     ngOnInit() {
-        const id = +this.route.snapshot.params['id']; // 139, added (the + converts the id to a number)
+        /* 152, commented out...
+        const id = +this.route.snapshot.params['id']; 
         console.log('server > ngOnInit() > id ' + id);
         this.server = this.serversService.getServer(1);
-        // 139 added this subscribe method...get a new server when the id changes
         this.route.params.subscribe(
             (params: Params) => {
                 this.server = this.serversService.getServer(+params['id']);
             }
         );
+        ...and replaced it with...
+        */
+       this.route.data.subscribe(
+            (data: Data) => 
+            {
+                this.server = data['server'];
+            }
+       );
     }
 
     // 141, added method onEdit that navigates to a relative path 'edit'

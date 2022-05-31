@@ -11,39 +11,44 @@ import { UsersComponent } from './users/users.component';
 import { AuthGuard } from './auth-guard.service';
 import { CanDeactivateGuard } from './servers/edit-server/can-deactivate-guard.service';
 import { ErrorPageComponent } from './error-page/error-page.component';
+import { ServerResolver } from './servers/server/server-resolver.service';
 
 const appRoutes: Routes = [
+    // Home tab
     {path: '',component: HomeComponent}, 
+
+    // Users tab
     {path: 'users',component: UsersComponent, children: [
         {path: ':id/:name',component: UserComponent}
     ]},
+    
+    // Servers tab
     {
         path:'servers', 
-        //  148 commented this out canActivate:[AuthGuard], 
-        canActivateChild:[AuthGuard], // 148, added
+        canActivateChild:[AuthGuard], 
         component: ServersComponent, 
         children: 
             [
-                {path: ':id',component: ServerComponent},
-                /* 150 this code...
+                // 152 added resolve...
                 {
-                    path: ':id/edit',
-                    component: EditServerComponent
-                } 
-                ...was changed to...*/
+                    path: ':id',
+                    component: ServerComponent, 
+                    resolve: {
+                        server: ServerResolver
+                    }
+                },
                 {
                     path: ':id/edit',
                     component: EditServerComponent, 
                     canDeactivate: [CanDeactivateGuard]
                 } 
-                /* now Angular will NOTES_GO_HERE */
             ]
     },
 
-    //151, commented out not-found, created ErrorPage
-    // {path: 'not-found', component: PageNotFoundComponent},
+    // not found
     {path: 'not-found', component: ErrorPageComponent, data: {message: 'This is a "page not found" message hard-coded into the route at app-routing-module.ts'}},
 
+    // global
     {path: '**', redirectTo: '/not-found'}
 ];
 

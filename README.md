@@ -809,6 +809,19 @@ ng g c page-not-found
 
 152. Resolving Dynamic Data with the resolve Guard
 
+    server-resolver.service.ts
+        notes
+
+    app.module.ts
+        notes
+
+    app-routing.module.ts
+        added resolve
+
+    server.component.ts
+        commented out stuff
+
+    app-routing.module.ts
 
 
 153. Understanding Location Strategies
