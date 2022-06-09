@@ -809,24 +809,106 @@ ng g c page-not-found
 
 152. Resolving Dynamic Data with the resolve Guard
 
-    server-resolver.service.ts
-        notes
+    added file server-resolver.service.ts
 
-    app.module.ts
-        notes
+        import { Injectable } from "@angular/core";
+        import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from "@angular/router";
+        import { Observable } from "rxjs";
+        import { ServersService } from "../servers.service";
+
+        // this interface is used by the resolve() method below
+        interface Server {
+            id: number;
+            name: string;
+            status: string;
+        }
+
+        // when injecting a service into another service, add @Injectable()
+        // we are doing this in the constructor() method below
+        @Injectable()
+
+        export class ServerResolver 
+
+            // this implements the Resolve interface provided by @angular/router
+            // Resolve is a generic type, here it wraps the datatype that we get in the end
+            implements Resolve<{
+
+                // this is the type definition of the thing that the resolver will give us 
+                id: number, 
+                name: string, 
+                status: string
+
+            }> {
+
+            // here we inject the ServersService (for use in method resolve() below)
+            constructor(private serversService: ServersService) {}
+
+            // the Resolve interface requires that we implement the resolve() method
+            resolve(
+                route: ActivatedRouteSnapshot, 
+                state: RouterStateSnapshot
+
+            // here we are returning either (a) an observable, (b) a promise 
+            // or (c) the server (which we added as interface (above))
+            ): Observable<Server> 
+                | Promise<Server> 
+                | Server 
+            {
+
+                // here we call serversService.getServer() which will return a server
+                return this.serversService.getServer(
+                    +route.params['id']
+                );
+            }
+        }
+
+    now that this is created we have to add it...
+
+        in app.module.ts
+            added 'ServerResolver' to providers array
+                providers: [ServersService, AuthService, AuthGuard, CanDeactivateGuard, ServerResolver],
 
     app-routing.module.ts
-        added resolve
+        added resolve to children array of servers tab routes
+            // Servers tab
+            {
+                path:'servers', 
+                canActivateChild:[AuthGuard], 
+                component: ServersComponent, 
+                children: 
+                    [
+                        // 152 added resolve...
+                        {
+                            path: ':id',
+                            component: ServerComponent, 
+                            resolve: {
+                                server: ServerResolver // 'server' property name is up to us
+                            }
+                        },
+                        {
+                            path: ':id/edit',
+                            component: EditServerComponent, 
+                            canDeactivate: [CanDeactivateGuard]
+                        } 
+                    ]
+            },
 
     server.component.ts
         commented out stuff
 
     app-routing.module.ts
+        notes
+
+    server.component.ts
 
 
-153. Understanding Location Strategies
+TODO: 152-redux. Fix 'not implemented' warning that appears in the import statement
+    app-routing.module.ts
+        import { PageNotFoundComponent } from './page-not-found/page-not-found.component'; // 127
+        
+TODO: 153. Understanding Location Strategies
 
-154. Wrap Up
+TODO: 154. Wrap Up
 ```
 
 ## Percent Complete

@@ -29,7 +29,7 @@ export class ServerComponent implements OnInit {
         );
         ...and replaced it with...
         */
-       this.route.data.subscribe(
+       this.route.data.subscribe( // 'subscribe' is 'listen for changes'
             (data: Data) => 
             {
                 this.server = data['server'];
