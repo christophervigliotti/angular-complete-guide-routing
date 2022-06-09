@@ -32,7 +32,7 @@ export class ServerComponent implements OnInit {
        this.route.data.subscribe( // 'subscribe' is 'listen for changes'
             (data: Data) => 
             {
-                this.server = data['server'];
+                this.server = data['server']; // 'server' has to match the route > resolve property name 'server' 
             }
        );
     }

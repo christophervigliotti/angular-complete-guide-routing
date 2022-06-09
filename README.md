@@ -885,16 +885,31 @@ ng g c page-not-found
                                 server: ServerResolver // 'server' property name is up to us
                             }
                         },
-                        {
-                            path: ':id/edit',
-                            component: EditServerComponent, 
-                            canDeactivate: [CanDeactivateGuard]
-                        } 
                     ]
             },
 
     server.component.ts
-        commented out stuff
+
+        ngOnInit() {
+            /* 152, commented out...
+            const id = +this.route.snapshot.params['id']; 
+            console.log('server > ngOnInit() > id ' + id);
+            this.server = this.serversService.getServer(1);
+            this.route.params.subscribe(
+                (params: Params) => {
+                    this.server = this.serversService.getServer(+params['id']);
+                }
+            );
+            ...and replaced it with...
+            */
+            this.route.data.subscribe( // 'subscribe' is 'listen for changes'
+                (data: Data) => 
+                {
+                    // 'server' has to match the route > resolve property name 'server' 
+                    this.server = data['server']; 
+                }
+            );
+        }
 
     app-routing.module.ts
         notes
