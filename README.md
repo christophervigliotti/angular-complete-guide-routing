@@ -911,19 +911,25 @@ ng g c page-not-found
             );
         }
 
-    app-routing.module.ts
-        notes
+152.5 Took The Summer Off Because, Kids!
 
-    server.component.ts
+153. Understanding Location Strategies
+
+    Notes from the lecture
+    * the server has to be configured so that 404s contain index.html
+    * enable hash routes
+
+    # added useHash to app-routing.module.ts
+    imports: [
+        RouterModule.forRoot(appRoutes, {useHash: true})
+    ],    
+
+    then I changed it back
+
+154. Wrap Up
 
 
-TODO: 152-redux. Fix 'not implemented' warning that appears in the import statement
-    app-routing.module.ts
-        import { PageNotFoundComponent } from './page-not-found/page-not-found.component'; // 127
-        
-TODO: 153. Understanding Location Strategies
 
-TODO: 154. Wrap Up
 ```
 
 ## Percent Complete
